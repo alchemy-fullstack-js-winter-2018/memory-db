@@ -31,4 +31,11 @@ describe('animal creators', () => {
     expect(animalConstructor.sayHi()).toEqual(animalFactory.sayHi());
     expect(animalFactory.sayHi()).toEqual(animalClass.sayHi());
   });
+  it('description throws an error', () => {
+    try {
+      expect(AnimalClass.description()).toThrowError();
+    } catch(error) {
+      expect(error).toEqual('error no description found');
+    }
+  });
 });

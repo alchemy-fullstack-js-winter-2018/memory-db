@@ -6,8 +6,11 @@ class AnimalClass {
   sayHi() {
     return `Hello, I am a ${this.species} and my name is ${this.name}`;
   }
+  static description() {
+    throw 'error no description found';
+  }
 }
-  
+ 
 const tabby = new AnimalClass('tabby', 'cat');
 
 tabby.sayHi();
