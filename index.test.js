@@ -65,4 +65,9 @@ describe('memory database', () => {
       expect(err).toEqual('No object with id 9 found');
     }
   });
+
+  it('drop deletes all keys', () => {
+    db.create({ name: 'Happs' });
+    expect(db.drop()).toEqual({});
+  });
 });

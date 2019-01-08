@@ -42,6 +42,11 @@ class MemoryDatabase {
     delete this.store[_id];
     return { deleted: 1 };
   }
+
+  drop() {
+    this.sort = {};
+    return this.sort;
+  }
 }
 
 module.exports = MemoryDatabase;
