@@ -29,13 +29,17 @@ describe('memory database', () => {
         }).toThrowError();
     });
 
-    // it('will return a list of all objects', () => {
-        
-    //     const cats = [{ 
-    //         name: 'snowball', 
-    //         name: 'pinky'
-    //     }]
+    it('will return a list of all objects', () => {
+        //const cat = { name: 'snowball'};
+        const cat = [{ 
+            name: 'snowball',
+            name: 'pinky' 
+        }];
+        const createdCat = db.create(cat);
+        //console.log(createdCat);
+        const cats = db.find();
+        expect(cats).toEqual([createdCat]);
 
 
-    // })
+    });
 });
