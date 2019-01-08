@@ -20,10 +20,17 @@ class AnimalClass {
     this.name = name;
     this.species = species;
   }
+  static description() {
+    throw 'You are required to implement the description method';
+  }
+
   speak() {
     return `Hi I am ${this.name} and I am a ${this.species}`;
   }
+
 }
+
+
 module.exports = {
   AnimalConstructor,
   AnimalFactory,

@@ -26,7 +26,15 @@ describe('animal creator', () => {
       const animal = new AnimalClass('Fluffy', 'lion');
       expect(animal.speak()).toEqual('Hi I am Fluffy and I am a lion');
     });
+    it('description throw error', () => {
+      try {
+        expect(AnimalClass.description()).toThrowError();      
+      } catch(e) {
+        console.log(e);
+      }
+    });
   });
+  
 
   it('implements all three creators the same', () => {
     const animalConstructor = new AnimalConstructor('Fluffy', 'lion');

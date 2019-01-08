@@ -19,7 +19,7 @@ whiskers.speak();
 fluffy.speak();
 
 //constructor function
-function Cat(name) 
+function Cat(name) {
   this.name = name;
 }
 
