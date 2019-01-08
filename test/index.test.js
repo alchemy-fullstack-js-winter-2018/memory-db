@@ -1,38 +1,44 @@
-const { MemoryDatabase } = require('./index');   // #1
-describe('memory db', () => {   //goning to create new db before each test
-    beforeEach(() => {
-        //rin b4 each test
-    });
-    beforeAll(() => {
-        db = new MemoryDatabase();
-        //run once b4 the first test runs set up environment eg start the db of give drecedntials
-    });
-    //store = { { name: 'fluffy} }}
-    it('creates an obj in db', () => {
-        const cat = { name: 'fluffy' };
-        const cresatedCat = db.create(cat);
-        expect(createdAat.name).toEqual('fluffy');
-    });
+const MemoryDatabase = require('../lib/index');
+describe('MemoryDatabase', () => {
+  let db  = null;
+  beforeEach(() => {
+    db = new MemoryDatabase();
+  });
 
-    it('can find an obj by id in the db', () => {
-        const cat = { name: 'fluffy' };
-        const createdCat = db.create(cat);
+  it('creates an obj in db', () => {
+    const cat = { name: 'fluffy' };
+    const createdCat = db.create(cat);
+    expect(createdCat.name).toEqual('fluffy');
+  });
 
-        const storedCat = db.findBYId(createdCat._id); // ditto foundCat
-        expect(foundCat).toEqual(createdCat);
-    });
+  it('can find an obj by id in the db', () => {
+    const cat = { name: 'fluffy' };
+    const createdCat = db.create(cat);
 
+    const foundCat = db.findById(createdCat._id);
+    expect(foundCat).toEqual(createdCat);
+  });
 
-    afterEach(() => {   
-            // runs after each test, closing db connections
-    });
-    afterAll(() => {
-        //once after last test runs
-        //deleting files that were created in testing
-        // shut down db
-    });
-    it('test 1', () => {
-    it('test 2', () => { 
-
-    });
+  it('throws error when obj does not exist', () => {
+    expect(() => {
+      db.findById('notARealId');
+    }).toThrowError('No object with _id notARealId');
+  });
 });
+
+// beforeAll(() => {
+// });
+// afterEach(() => {   
+// });
+// afterAll(() => {
+// });
+
+
+//   //store = { { name: 'fluffy} }}
+
+//afterall:     //once after last test runs
+//deleting files that were created in testing
+// shut down db
+
+// after each:     // runs after each test, closing db connections
+
