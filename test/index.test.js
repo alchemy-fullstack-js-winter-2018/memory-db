@@ -33,4 +33,16 @@ describe('memory database', () => {
     const data = [];
     expect(db.find()).toEqual(data);
   });
+
+  it('can find by id and update item', () => {
+    expect(db.findByIdAndUpdate(id)).toEqual();
+  });
+
+  it('can find by id and delete item', () => {
+    const cat = { name: 'fluffy' };
+    const createdCat = db.create(cat);
+
+    const deletedCat = db.findByIdAndDelete(createdCat._id);
+    expect(deletedCat).toEqual({ deleted: 1 });
+  });
 });
