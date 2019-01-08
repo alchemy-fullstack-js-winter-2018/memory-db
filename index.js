@@ -32,6 +32,16 @@ class MemoryDatabase {
     this.store[_id] = copiedEmoji;
     return copiedEmoji;
   }
+
+  delete(_id) {
+    try {
+      this.findById(_id);
+    } catch(err) {
+      throw err;
+    }
+    delete this.store[_id];
+    return { deleted: 1 };
+  }
 }
 
 module.exports = MemoryDatabase;
