@@ -28,5 +28,12 @@ describe('memory database', () => {
     } catch(err) {
       expect(err).toEqual('No object with id 2 found');
     }
-  });  
+  });
+  
+  it('can return a list of all objects', () => {
+    const happy1 = db.create({ name: 'Happs1' });
+    const happy2 = db.create({ name: 'Happs2' });
+
+    expect(db.find()).toEqual([happy1, happy2]);
+  });
 });

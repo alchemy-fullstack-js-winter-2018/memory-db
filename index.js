@@ -16,6 +16,10 @@ class MemoryDatabase {
     if(this.store[_id]) return this.store[_id];
     throw `No object with id ${_id} found` ;
   }
+
+  find() {
+    return Object.values(this.store);
+  }
 }
 
 module.exports = MemoryDatabase;
