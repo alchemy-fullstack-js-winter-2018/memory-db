@@ -1,4 +1,8 @@
-const { AnimalClass, AnimalFactory, AnimalConstructor } = require('./animal');
+const {
+  AnimalClass,
+  AnimalFactory,
+  AnimalConstructor
+} = require('./animal');
 
 describe('animal creators', () => {
   describe('AnimalClass', () => {
@@ -19,6 +23,12 @@ describe('animal creators', () => {
       expect(results.sayHi()).toEqual('Hello, I am a Lamb and my name is Buff');
     });
   });
+  it('implements all three creators the same', () => {
+    const animalConstructor = new AnimalConstructor('fluffy', 'cat');
+    const animalFactory = AnimalFactory('fluffy', 'cat');
+    const animalClass = new AnimalClass('fluffy', 'cat');
+
+    expect(animalConstructor.sayHi()).toEqual(animalFactory.sayHi());
+    expect(animalFactory.sayHi()).toEqual(animalClass.sayHi());
+  });
 });
-
-
