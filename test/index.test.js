@@ -25,5 +25,24 @@ describe('memory database', () => {
     const foundCat = db.findById(createdCat._id);
     expect(foundCat).toEqual(createdCat);
   });
+  it('no foundObj throws error', () => {
+    // const cat = { name: 'fluffy' };
+    // const createdCat = db.create(cat);
+    // console.log(createdCat);
+    expect(() => {
+      db.findById('blahblah');
+    }).toThrowError('No id found for: blahblah');
+
+    // try {
+    //   expect(createdCat._id === '1234').toThrow();
+    // } catch(err) {
+    //   expect(err).toEqual('errorrrr');
+    // }
+  });
+
+
+  // it('can find a list of all objects in store', () => {
+  //   console.log(Object.values(db.create()));
+  // });
 
 });
