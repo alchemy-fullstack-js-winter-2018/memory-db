@@ -26,12 +26,18 @@ describe('memory database', () => {
   });
   
   it('throws an error', () => {
-    try {
-      expect(db.findById(1234)).toThrowError();
-    } catch(e) {
-      expect(e).toEqual('no dog assigned to that id!');
-    }
+    expect(() => {
+      db.findById('1234');
+    }).toThrowError('no dog assigned to that id!');
   });
 
+  it('returns a list of all objects in the store', () => {
+    const dog = { name: 'fluffy' };
+    const dogTwo = { name: 'fido' };
+    const createdDog = db.create(dog);
+    const createdDawg = db.create(dogTwo);
+    const all = db.find();
+    expect(all).toEqual([createdDog, createdDawg]);
+  });
 
 });
