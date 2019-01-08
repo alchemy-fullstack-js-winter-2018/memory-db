@@ -1,5 +1,5 @@
 const MemoryDatabase = require('../lib/index');
-const shortId = require('shortid');
+const _id = require('short-id');
 
 
 describe('memory database', () => {
@@ -15,7 +15,7 @@ describe('memory database', () => {
   it('creates an object in the database', () => {
     const cat = { name: 'fluffy' };
     const createdCat = db.create(cat);
-    expect(createdCat).toEqual('fluffy');
+    expect(createdCat.name).toEqual('fluffy');
   });
 
   it('can find an object by id', () => {
@@ -23,10 +23,16 @@ describe('memory database', () => {
     const createdCat = db.create(cat);
 
     const foundCat = db.findById(createdCat._id);
-    expect(foundCat.name).toEqual(createdCat);
+    expect(foundCat).toEqual(createdCat);
   });
 
-module.exports = MemoryDatabase;
+  it('throws an error if no object exists for the id', () => {
+    expect(() => {
+      db.findById('notARealId');
+    }).toThrowError();
+  });
+
+
 
 
 
@@ -59,14 +65,5 @@ module.exports = MemoryDatabase;
 
   });
 
-  it('creates an object in the database', () => {
-    const cat = { name: 'fluffy' };
-    const createdCat = db.create(cat);
-    expect(createdCat.name).toEqual('fluffy');
-    db.create(cat);
-  });
-
-  it('test 2', () => {
-
-  });
+ 
 });
