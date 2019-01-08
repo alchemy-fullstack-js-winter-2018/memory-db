@@ -38,4 +38,13 @@ describe('memory database', () => {
     const newUpdatedCat = db.findByIdAndUpdate(id, { name: 'whiskers' });
     expect(newUpdatedCat.name).toEqual('whiskers'); 
   }); 
+  it('this should throw an error is the id doesn\'t exist', () => {
+    // expect(db.findByIdAndUpdate('hello')).toThrowError();
+    try {
+      db.findByIdAndUpdate('hello');
+    } 
+    catch(error) {
+      expect(error).toEqual('the id you are looking for is not found');
+    }
+  });
 });
