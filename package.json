@@ -19,5 +19,8 @@
   "homepage": "https://github.com/averagegalmarcy/memory-db#readme",
   "devDependencies": {
     "jest": "^23.6.0"
+  },
+  "dependencies": {
+    "shortid": "^2.2.14"
   }
 }

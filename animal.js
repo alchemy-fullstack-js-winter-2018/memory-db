@@ -21,9 +21,21 @@ animalFunction.prototype.speak = function() {
   return `Hello, my name is ${this.name} and I am a ${this.species}`;
 };
 
-
+class AnimalClass {
+  constructor(name, species) {
+    this.name = name;
+    this.species = species;
+  }
+  static description() {
+    throw 'there is no description'; 
+  }
+  speak() {
+    return `Hello, my name is ${this.name} and I am a ${this.species}`;
+  }
+}
 
 module.exports = {
   animalFunction,
-  animals
+  animals,
+  AnimalClass
 }; 
