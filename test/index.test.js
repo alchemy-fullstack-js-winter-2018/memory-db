@@ -28,7 +28,14 @@ describe('memory database', () => {
   });
 
   it('can return a list of all objects', () => {
-    
+    const cat = [
+      { name: 'fuzzball' },
+      { name: 'mittens' },
+      { name: 'tiny' }
+    ];
+    const createdCat = db.create(cat);
+    const cats = db.find();
+    expect(cats).toEqual([createdCat]);
   });
 
   beforeAll(() => {
