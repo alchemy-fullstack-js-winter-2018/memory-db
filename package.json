@@ -23,6 +23,6 @@
     "jest": "^23.6.0"
   },
   "dependencies": {
-    "shortid": "^2.2.14"
+    "short-id": "0.1.0-1"
   }
 }
