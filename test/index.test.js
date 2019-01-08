@@ -23,7 +23,6 @@ describe('memory database', () => {
   });
 
   it('throws an error if no object exists for the id', () => {
-
     try {
       expect(db.findById(123)).toThrowError();
     } catch(e) {
@@ -31,10 +30,17 @@ describe('memory database', () => {
     }
   });
 
+  it('returns all objects', () => {
+    const cat = { name: 'fluffy' };
+    const kitten = { name: 'missy' };
 
-  // it('returns all objects', () => {
-
-  // })
+    const createdCat = db.create(cat);
+    const createdKitten = db.create(kitten);
+    
+    const allCats = db.find();
+  
+    expect(allCats).toEqual([createdCat, createdKitten]);
+  })
 
   
 });
