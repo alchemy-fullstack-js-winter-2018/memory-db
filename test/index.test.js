@@ -32,6 +32,7 @@ describe('memory database', () => {
   it('creates an object in the database', () => {
     const cat = { name: 'fluffy' };
     const createdCat = db.create(cat);
+    
     expect(createdCat.name).toEqual('fluffy');
   });
 
@@ -47,7 +48,14 @@ describe('memory database', () => {
       db.findById('notARealID');
     }).toThrowError();
   });
+  it('can return a list of objects in the store', () => {
+    const cat = { name: 'fluffy' };
+    const dog = { name: 'bingo'};
+    const createdCat = db.create(cat); 
+    const createdDog = db.create(dog); 
 
-
+    const findEm = db.find();
+    expect(findEm).toEqual([createdCat, createdDog]);
+  });
 
   });
