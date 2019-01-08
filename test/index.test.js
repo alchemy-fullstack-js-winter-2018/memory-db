@@ -20,5 +20,17 @@ describe('memory database', () => {
     expect(foundCat).toEqual(createdCat);
   });
 
-  
+  it('throws an error if there is no object with matching id', () => {
+    try {
+      const dog = { name: 'fluffy', id: 99999 };
+      expect(db.findById(dog.id)).toThrowError();
+    } catch(error) {
+      expect(error).toEqual('No Id found');
+    }
+  });
+
+  it('returns a list of all objects', () => {
+    const data = [];
+    expect(db.find()).toEqual(data);
+  });
 });
