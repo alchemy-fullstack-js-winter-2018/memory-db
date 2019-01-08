@@ -1,3 +1,4 @@
+
 const MemoryDatabase = require('../lib/index');
 
 describe('memory database', () => {
@@ -40,6 +41,11 @@ describe('memory database', () => {
 
     const foundCat = db.findById(createdCat._id);
     expect(foundCat).toEqual(createdCat);
+  });
+  it('throws an error when trying to find an opb that DNE', () => {
+    expect(() => {
+      db.findById('notARealID');
+    }).toThrowError();
   });
 
 
