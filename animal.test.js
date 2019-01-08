@@ -21,5 +21,12 @@ describe('animal constructor functions', () => {
       const drewDeer = new AnimalClass('Drew', 'deer');
       expect(drewDeer.speak()).toEqual('Hi, I\'m Drew, the deer');
     });
+    it('throws an error when using description static method', () => {
+      try {
+        expect(AnimalClass.description()).toThrow();
+      } catch(e) {
+        console.log(e);
+      }
+    });
   });
 }); 

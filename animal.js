@@ -25,6 +25,9 @@ class AnimalClass {
   speak() {
     return (`Hi, I'm ${this.name}, the ${this.species}`);
   }
+  static description() {
+    throw ('no description found on this class');
+  }
 }
 
 module.exports = {

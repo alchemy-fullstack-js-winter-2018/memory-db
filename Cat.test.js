@@ -5,4 +5,7 @@ describe('Cat tests', () => {
     const cat = new Cat('Fluffy');
     expect(cat.speak()).toEqual('Hi, I\'m Fluffy, the cat');
   });
+  it('has a description static method', () => {
+    expect(Cat.description()).toEqual('fluffy and will destroy your allergies');
+  });
 });
