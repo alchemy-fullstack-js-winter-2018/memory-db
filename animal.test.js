@@ -9,7 +9,7 @@ describe('animal creators', () => {
   });
   describe('AnimalFactory', () => {
     it('returns a string of animals species and name', () => {
-      const results = new AnimalFactory('Billy', 'Buffalo');
+      const results = AnimalFactory('Billy', 'Buffalo');
       expect(results.sayHi()).toEqual('Hello, I am a Buffalo and my name is Billy');
     });
   });
