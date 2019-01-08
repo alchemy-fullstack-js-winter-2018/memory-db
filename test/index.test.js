@@ -32,6 +32,12 @@ describe('memory database', () => {
     }).toThrowError();
   });
 
+  it('returns a list of all objects in this.store', () => {
+    const cat = [];
+
+    expect(db.find()).toEqual(cat);
+  });
+
 
 
 
