@@ -2,7 +2,7 @@ const { Animal,
   factoryAnimal, 
   AnimalClass } = require('./animals');
 
-describe('animal animal creators', () => {
+describe('animal creators', () => {
   describe('animal constructor', () => {
     it('has a speak method', () => {
       const animal = new Animal('banana', 'monkey');
@@ -19,6 +19,13 @@ describe('animal animal creators', () => {
     it('has a speak method', () => {
       const animal = new AnimalClass('bozo', 'cat');
       expect(animal.speak()).toEqual('Hello my name is bozo and I am a cat');
+    });
+    it('description throws an error', () => {
+      try {
+        expect(AnimalClass.description()).toThrowError();
+      } catch(e) {
+        expect(e).toEqual('You are required to implement the description method');
+      }
     });
   });
   it('implements all three creators the same', () => {
