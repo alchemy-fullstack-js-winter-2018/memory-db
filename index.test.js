@@ -24,12 +24,10 @@ describe('memory database', () => {
   it('can return every object in the store', () => {
     const obj1 = { name: 'foo' };
     const obj2 = { name: 'bar' };
-    const createOBj1 = db.create(obj1);
-    const createOBj2 = db.create(obj2);
-
-
+    db.create(obj1);
+    db.create(obj2);
     const foundObjs = db.find();
-
     expect(foundObjs[0].name).toEqual('foo');
+    expect(foundObjs[1].name).toEqual('bar');
   });
 });
