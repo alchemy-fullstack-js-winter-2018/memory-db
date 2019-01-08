@@ -26,23 +26,18 @@ describe('memory database', () => {
     expect(foundCat).toEqual(createdCat);
   });
   it('no foundObj throws error', () => {
-    // const cat = { name: 'fluffy' };
-    // const createdCat = db.create(cat);
-    // console.log(createdCat);
     expect(() => {
       db.findById('blahblah');
-    }).toThrowError('No id found for: blahblah');
-
-    // try {
-    //   expect(createdCat._id === '1234').toThrow();
-    // } catch(err) {
-    //   expect(err).toEqual('errorrrr');
-    // }
+    }).toThrow(/^No id found for: blahblah$/);
   });
 
-
-  // it('can find a list of all objects in store', () => {
-  //   console.log(Object.values(db.create()));
-  // });
+  it('can find a list of all objects in store', () => {
+    const cat1 = { name: 'fluffy' };
+    const cat2 = { name: 'boobah' };
+    const createdCat1 = db.create(cat1);
+    const createdCat2 = db.create(cat2);
+    const all = db.find();
+    expect(all).toEqual([createdCat1, createdCat2]);
+  });
 
 });
