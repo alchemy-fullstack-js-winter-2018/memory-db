@@ -1,4 +1,4 @@
-const MemoryDatabase = ('../lib/index');
+const MemoryDatabase = require('../lib/index');
 
 describe('memory database', () => {
   let db = null;
@@ -20,10 +20,34 @@ describe('memory database', () => {
     expect(foundCat).toEqual(createdCat);
   });
 
-  it('throws an error when trying to find sn object that does not exist', () => {
+  it('throws an error when trying to find an object that does not exist', () => {
     expect(() => {
       db.findById('notARealId');
     }).toThrowError('No object with _id notARealId');
+  });
+
+  it('returns a list of objects', () => {
+    const cat = { name: 'fluffy' };
+    const createCat1 = db.create(cat);
+    const cat2 = { name: 'whiskers' };
+    const createCat2 = db.create(cat2);
+    expect(db.find()).toEqual([createCat1, createCat2]);
+  });
+
+  it('finds by ID and updates', () => {
+    const cat = { name: 'fluffy' };
+    const createdCat = db.create(cat);
+
+    const foundCat = db.findById(createdCat._id);
+    expect(foundCat).toEqual(createdCat);
+  });
+
+  it('finds by ID and deletes', () => {
+
+  });
+
+  it('drops', () => {
+
   });
 });
 
