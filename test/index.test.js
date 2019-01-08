@@ -38,8 +38,7 @@ describe('memory database', () => {
     const newUpdatedCat = db.findByIdAndUpdate(id, { name: 'whiskers' });
     expect(newUpdatedCat.name).toEqual('whiskers'); 
   }); 
-  it('this should throw an error is the id doesn\'t exist', () => {
-    // expect(db.findByIdAndUpdate('hello')).toThrowError();
+  it('this should throw an error if the id doesn\'t exist', () => {
     try {
       db.findByIdAndUpdate('hello');
     } 
@@ -47,4 +46,19 @@ describe('memory database', () => {
       expect(error).toEqual('the id you are looking for is not found');
     }
   });
+  it('this should delete the obj', () => {
+    const cat = { name: 'fluffy' };
+    const createdCat = db.create(cat);
+    const id = createdCat._id;
+    const deleteCat = db.findByIdAndDelete(id); 
+    expect(deleteCat).toEqual({ deleted: 1 });
+  }); 
+  it('this should throw an error if the id doesn\'t exist', () => {
+    try {
+      db.findByIdAndDelete('hello');
+    } 
+    catch(error) {
+      expect(error).toEqual('the id you are looking for is not found');
+    }
+  }); 
 });
