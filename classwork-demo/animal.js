@@ -1,13 +1,11 @@
 //factory function
-const AnimalFactory = (name, species) => {
-  return {
-    name,
-    species,
-    speak() {
-      return `Hello, I am a ${this.name}. My species is a ${this.species}.`;
-    }
-  };
-};
+const AnimalFactory = (name, species) => ({
+  name,
+  species,
+  speak() {
+    return `Hello, I am a ${this.name}. My species is a ${this.species}.`;
+  }
+});
 
 //constructor method
 function AnimalConstructor(name, species) {
@@ -28,6 +26,10 @@ class AnimalClass {
 
   speak() {
     return `Hello, I am a ${this.name}. My species is a ${this.species}.`;
+  }
+
+  static description() {
+    throw 'error no description given';
   }
 }
 
