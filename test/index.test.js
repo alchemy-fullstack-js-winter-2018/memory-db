@@ -24,5 +24,14 @@ describe('memory database', () => {
 
     expect(foundDog).toEqual(createdDog);
   });
+  
+  it('throws an error', () => {
+    try {
+      expect(db.findById(1234)).toThrowError();
+    } catch(e) {
+      expect(e).toEqual('no dog assigned to that id!');
+    }
+  });
+
 
 });
