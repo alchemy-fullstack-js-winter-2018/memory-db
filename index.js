@@ -12,8 +12,9 @@ class MemoryDatabase {
     return copiedObj;
   }
 
-  findById() {
-    
+  findById(_id) {
+    if(this.store[_id]) return this.store[_id];
+    throw `No object with id ${_id} found` ;
   }
 }
 
