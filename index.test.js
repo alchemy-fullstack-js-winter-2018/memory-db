@@ -36,4 +36,19 @@ describe('memory database', () => {
 
     expect(db.find()).toEqual([happy1, happy2]);
   });
+
+  it('updates object', () => {
+    const happy = db.create({ name: 'Happs1' });
+    const sad = { _id: happy._id, name: 'Saddy2' };
+    
+    expect(db.update(happy._id, { name: 'Saddy2' })).toEqual(sad);
+  });
+
+  it('update throws error', () => {
+    try {
+      expect(db.update(5, { name: 'Saddy2' })).toThrowError();
+    } catch(err) {
+      expect(err).toEqual('No object with id 5 found');
+    }
+  });
 });

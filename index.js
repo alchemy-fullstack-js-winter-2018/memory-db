@@ -5,20 +5,32 @@ class MemoryDatabase {
     this.store = {};
   }
   
-  create(obj) {
+  create(emoji) {
     const _id = ids.generate();
-    const copiedObj = { ...obj, _id };
-    this.store[_id] = copiedObj;
-    return copiedObj;
+    const copiedEmoji = { ...emoji, _id };
+    this.store[_id] = copiedEmoji;
+    return copiedEmoji;
   }
 
   findById(_id) {
-    if(this.store[_id]) return this.store[_id];
+    const emoji = this.store[_id];
+    if(emoji) return emoji;
     throw `No object with id ${_id} found` ;
   }
 
   find() {
     return Object.values(this.store);
+  }
+
+  update(_id, emoji) {
+    try {
+      this.findById(_id);
+    } catch(err) {
+      throw err;
+    }
+    const copiedEmoji = { ...emoji, _id };
+    this.store[_id] = copiedEmoji;
+    return copiedEmoji;
   }
 }
 
