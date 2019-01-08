@@ -35,7 +35,12 @@ describe('memory database', () => {
   });
 
   it('can find by id and update item', () => {
-    expect(db.findByIdAndUpdate(id)).toEqual();
+    const cat = { name: 'fluffy' };
+    const createdCat = db.create(cat);
+    const newCat = { name: 'spot' };
+
+    const updatedCat = db.findByIdAndUpdate(createdCat._id, newCat);
+    expect(updatedCat).toEqual({ name: 'spot', _id: createdCat._id });
   });
 
   it('can find by id and delete item', () => {
@@ -44,5 +49,9 @@ describe('memory database', () => {
 
     const deletedCat = db.findByIdAndDelete(createdCat._id);
     expect(deletedCat).toEqual({ deleted: 1 });
+  });
+
+  it('can drop all items in the store', () => {
+    expect(db.drop()).toEqual({});
   });
 });
