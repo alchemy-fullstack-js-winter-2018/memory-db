@@ -28,13 +28,9 @@ describe('memory database', () => {
     });
   
     it('can throw an error if there is no object with matching id', () => {
-      try {
-        const dog = { name: 'fluffy', id: '99999' };
-        expect(db.findById(dog.id)).toThrowError();
-      }
-      catch(error) {
-        expect(error).toEqual('error no matching object with given id');
-      }
+      expect(() => {
+        db.findById('notARealId');
+      }).toThrowError('No object with _id ${id}');
     });
   });
 
@@ -46,6 +42,24 @@ describe('memory database', () => {
       const createdCat2 = db.create(cat2);
       const data = [createdCat1, createdCat2];
       expect(db.find()).toEqual(data);
+    });
+  });
+
+  describe('findByIdAndUpdate', () => {
+    it('can find an object by id and update it', () => {
+      const cat = { name: 'fluffy' };
+      const createdCat = db.create(cat);
+      createdCat.name = 'spot';
+      expect(db.findByIdAndUpdate(createdCat.name)).toEqual('spot');
+    });
+  });
+
+  describe('findByIdAndDelete', () => {
+    it('can find an object by id and delete it', () => {
+      const cat = { name: 'fluffy' };
+      const createdCat = db.create(cat);
+      const deletedCat = db.findByIdAndDelete(createdCat._id);
+      expect(deletedCat).toEqual({ deleted: 1 });
     });
   });
 });
