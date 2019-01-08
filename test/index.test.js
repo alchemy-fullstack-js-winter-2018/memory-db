@@ -19,12 +19,11 @@ describe('memory database', () => {
     expect(createdCat.name).toEqual('fluffy');
   });
 
-  // it('can find object by id', () => {
-  //   const cat = { name: 'fluffy' };
-  //   const createdCat = db.create(cat);
-
-  //   const foundCat = db.findById(createdCat._id);
-  //   expect(foundCat).toEqual(createdCat);
-  // });
+  it('can find object by id', () => {
+    const cat = { name: 'fluffy' };
+    const createdCat = db.create(cat);
+    const foundCat = db.findById(createdCat._id);
+    expect(foundCat).toEqual(createdCat);
+  });
 
 });
