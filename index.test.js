@@ -30,4 +30,27 @@ describe('memory database', () => {
     expect(foundObjs[0].name).toEqual('foo');
     expect(foundObjs[1].name).toEqual('bar');
   });
+  it('throws error if wrong id when updating', () => {
+    expect(() => {
+      db.findById('NotARealId');
+    }).toThrowError();
+  });
+  it('throws an error if invalid ID', () => {
+    expect(() => {
+      db.findById('notARealId');
+    }).toThrowError();
+  });
+  it('finds an object by id and then deletes it', () => {
+    const cat = { name: 'cat3' };
+    const createdCat = db.create(cat);
+    const deletedItem = db.findByIdAndDelete(createdCat._id);
+    expect(deletedItem).toEqual({ deleted: 1 });
+  });
+  it('deletes everything in the store', () => {
+    const cat = { name: 'cat3' };
+    db.create(cat);
+    db.drop();
+    expect(db.store).toEqual({});
+
+  });
 });

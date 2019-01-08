@@ -21,6 +21,21 @@ class MemoryDatabase {
     const all = this.store;
     return Object.values(all);
   }
+  findByIdAndUpdate(_id, newItem) {
+    this.store[_id] = newItem;
+    const item = this.store[_id];
+    if(!item) {
+      throw 'No Item Id';
+    }
+    return item;
+  }
+  findByIdAndDelete(_id) {
+    delete this.store[_id];
+    return { deleted: 1 };
+  }
+  drop() {
+    this.store = {};
+  }
 }
   
   
