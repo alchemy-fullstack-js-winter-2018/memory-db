@@ -106,4 +106,3 @@ Here are suggested tests (in order):
   returns an empty array `[]`.
 6. Save a few objects, then test that `.find`
   returns an array of those objects.
-
