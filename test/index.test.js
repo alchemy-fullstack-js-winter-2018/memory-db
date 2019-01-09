@@ -51,7 +51,6 @@ describe('memory database', () => {
     const cat = { name: 'fluffy' };
     const createdCat = db.create(cat);
     const deletedCatMsg = db.findByIdAndDelete(createdCat._id);
-    console.log(deletedCatMsg);
     expect(deletedCatMsg).toEqual({ deleted: 1 });
   });
   it('throws an error if no object exists for the id', () => {
@@ -60,9 +59,8 @@ describe('memory database', () => {
     }).toThrow(/^No object found for: blahblah$/);
   });
 
-  // it('drops the whole database', () => {
-  //   const dropped = db.drop();
-  //   expect(dropped).toEqual({});
-  // });
+  it('drops the whole database', () => {
+    expect(db.drop()).toEqual({});
+  });
 
 });
