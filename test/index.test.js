@@ -56,6 +56,13 @@ describe('memory database', () => {
     }).toThrowError('No object found with that _id');
   });
 
-  // it('finds and object by id and deletes')
+  it('finds and object by id and deletes', () => {
+    const cat = { name: 'fluffy' };
+    const createdCat = db.create(cat);
+
+    const deletedCat = db.delete(cat._id);
+
+    expect(deletedCat).toEqual({ deleted: 1 });
+  });
   
 });
