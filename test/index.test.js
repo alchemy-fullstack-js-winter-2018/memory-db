@@ -23,11 +23,9 @@ describe('memory database', () => {
   });
 
   it('throws an error if no object exists for the id', () => {
-    try {
-      expect(db.findById(123)).toThrowError();
-    } catch(e) {
-      console.log(e);
-    }
+    expect(() => {
+      db.findById('notRealId');
+    }).toThrowError('No object with _id notRealId');
   });
 
   it('returns all objects', () => {
@@ -44,14 +42,20 @@ describe('memory database', () => {
 
   it('finds an object by id and updates', () => {
     const oldCat = { name: 'fluffy' };
-    const newCat = { name: 'missy'}
+    const newCat = { name: 'missy' };
     const createdCat = db.create(oldCat);
     const updatedCat = db.update(createdCat._id, newCat);
-    console.log('updatedCat', updatedCat);
-    console.log('old', newCat);
+   
     expect(newCat.name).toEqual(updatedCat.name);
-    
   });
 
+  it('throws an error if no object exists for the id', () => {
+    const newCat = { name: 'kitty' };
+    expect(() => {
+      db.update('123', newCat);
+    }).toThrowError('No object found with that _id');
+  });
+
+  // it('finds and object by id and deletes')
   
 });
