@@ -72,8 +72,15 @@ describe('memory database', () => {
       const cat = { name: 'itchy' };
       const createdCat = db.create(cat);
 
-      const foundByIdAndDelete = db.foundByIdAndDelete(createdCat._id);
-      expect(foundByIdAndDelete).toEqual(true); 
+      const findByIdAndDelete = db.findByIdAndDelete(createdCat._id);
+      expect(findByIdAndDelete).toEqual(true); 
   });
+  it('can delete all the keys in the store', () => {
+    const cat = { name: 'itchy'};
+
+    expect(db.drop()).toEqual({});
+
+
+  })
 
   });
