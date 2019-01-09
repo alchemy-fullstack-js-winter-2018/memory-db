@@ -74,4 +74,12 @@ describe('memory database', () => {
     }).toThrowError('No object found with that _id');
   });
   
+  it('deletes all keys in the store', () => {
+    const cat = { name: 'fluffy' };
+    const createdCat = db.create(cat); 
+
+    const deleteAll = db.drop();
+
+    expect(deleteAll).toEqual({});
+  });
 });
