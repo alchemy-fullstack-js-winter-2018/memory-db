@@ -43,25 +43,29 @@ describe('memory database', () => {
   it('updates a specific object', () => {
     const dog = { name: 'fluffy' };
     const createdDog = db.create(dog);
-    const foundDog = db.findById(createdDog._id);
-    const newDog = db.update(foundDog._id, foundDog);
+    const updatedDog = db.findByIdAndUpdate(createdDog._id, { name: 'banana' });
 
-    expect(foundDog).toEqual(newDog);
+    expect(updatedDog.name).toEqual('banana');
   });
 
   it('deletes a specific id', () => {
     const dog = { name: 'fluffy' };
     const createdDog = db.create(dog);
     const foundDog = db.findById(createdDog._id);
-    const noId = db.delete(foundDog._id);
+    const noId = db.findByIdAndDelete(foundDog._id);
     
     expect(noId).toEqual({ deleted: 1 });
   });
 
   it('throws an error', () => {
     expect(() => {
-      db.delete('NotAnId');
+      db.findByIdAndDelete('NotAnId');
     }).toThrowError('no object at this id');
+  });
+
+  it('drops all keys in the store', () => {
+    const banana = db.drop();
+    expect(banana).toEqual({});
   });
 
 });
