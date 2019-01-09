@@ -60,9 +60,18 @@ describe('memory database', () => {
     const cat = { name: 'fluffy' };
     const createdCat = db.create(cat);
 
-    const deletedCat = db.delete(cat._id);
+    const deletedCat = db.delete(createdCat._id);
 
     expect(deletedCat).toEqual({ deleted: 1 });
+  });
+
+  it('throws an error if no object exists for the id', () => {
+    const cat = { name: 'fluffy' };
+    const createdCat = db.create(cat);
+
+    expect(() => {
+      db.delete(123);
+    }).toThrowError('No object found with that _id');
   });
   
 });
