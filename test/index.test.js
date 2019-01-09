@@ -40,4 +40,17 @@ describe('memory database', () => {
     expect(all).toEqual([createdDog, createdDawg]);
   });
 
+  it('updates a specific object', () => {
+    const dog = { name: 'fluffy' };
+    const createdDog = db.create(dog);
+    const foundDog = db.findById(createdDog._id);
+    const newDog = db.update(foundDog._id, foundDog);
+
+    expect(foundDog).toEqual(newDog);
+  });
+
+  // it('deletes a specific id', () => {
+
+  // })
+
 });
