@@ -12,7 +12,9 @@ as an empty object.
 ```js
 class MemoryDatabase {
   constructor() {
-    this.store = {}
+    this.store = {
+      1234: { name: 'fluffy' }, 
+    }
   }
 }
 ```
