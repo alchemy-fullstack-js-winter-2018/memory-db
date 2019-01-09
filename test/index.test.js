@@ -60,5 +60,11 @@ describe('memory database', () => {
     catch(error) {
       expect(error).toEqual('the id you are looking for is not found');
     }
-  }); 
+  });
+  it('this should delete everything in the database', () => {
+    const cat = { name: 'fluffy' };
+    const createdCat = db.create(cat);
+    const drop = db.drop(createdCat);
+    expect(drop).toEqual();
+  });
 });
