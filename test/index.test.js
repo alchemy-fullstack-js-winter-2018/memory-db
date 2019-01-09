@@ -27,35 +27,48 @@ describe('memory database', () => {
     //* deleting files that were creating during testing
     //*shutdown db
   });
-  // store = { { name: 'fluffy'}}
+  // store = { { name: 'itchy'}}
 
   it('creates an object in the database', () => {
-    const cat = { name: 'fluffy' };
+    const cat = { name: 'itchy' };
     const createdCat = db.create(cat);
-    
-    expect(createdCat.name).toEqual('fluffy');
+
+    expect(createdCat.name).toEqual('itchy');
   });
 
   it('can find an object by id', () => {
-    const cat = { name: 'fluffy' };
+    const cat = { name: 'itchy' };
     const createdCat = db.create(cat);
 
     const foundCat = db.findById(createdCat._id);
     expect(foundCat).toEqual(createdCat);
   });
-  it('throws an error when trying to find an opb that DNE', () => {
+
+  it('throws an error when trying to find an obj that DNE', () => {
     expect(() => {
       db.findById('notARealID');
     }).toThrowError();
   });
+
   it('can return a list of objects in the store', () => {
-    const cat = { name: 'fluffy' };
-    const dog = { name: 'bingo'};
-    const createdCat = db.create(cat); 
-    const createdDog = db.create(dog); 
+    const cat = { name: 'itchy' };
+    const dog = { name: 'bingo' };
+    const createdCat = db.create(cat);
+    const createdDog = db.create(dog);
 
     const findEm = db.find();
     expect(findEm).toEqual([createdCat, createdDog]);
   });
 
-  });
+  it('can 1. find by id 2. update and object by creating a copy of a new object', () => {
+    const cat = { name: 'itchy' };
+    const createdCat = db.create(cat);
+
+
+    const findByIdAndUpdate = db.findByIdAndUpdate(createdCat._id, { name: 'scratchy' });
+    expect(findByIdAndUpdate.name).toEqual('scratchy');
+
+
+  })
+
+});
