@@ -46,6 +46,12 @@ describe('memory database', () => {
     expect(updatedCat.name).toEqual(newCat.name);
   });
 
+  it('throws an error when there is no id to update', () => {
+    expect(() => {
+      db.findByIdAndUpdate('badId');
+    }).toThrowError();
+  });
+
 
   beforeAll(() => {
     // once before the first test runs
