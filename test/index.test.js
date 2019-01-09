@@ -37,7 +37,13 @@ describe('test memory database', () => {
         const cat  = { name: 'cat2' };
         const createdCat = db.create(cat);
         const storedCat = db.findById(createdCat._id);
+
         expect(storedCat).toEqual(createdCat);
+    });
+    it('throws an error if invalid ID', ()=> {
+        expect(() => {
+            db.findById('notAReadId');
+        }).toThrowError('No Item Id');
     });
 
 
@@ -54,17 +60,58 @@ describe('test memory database', () => {
 
     it('can update an item in the db', () => {
         const cat  = { name: 'cat3' };
-        const newCat = { name: 'new cat'};
+        const newCat = { name: 'new cat2' };
         const createdCat = db.create(cat);
+        const newCreatedCat = db.create(newCat);
 
-        let updatedItem = db.findByIdAndUpdate(createdCat._id, newCat);
+        console.log('before update function runs',db);
+
+        let updatedItem = db.findByIdAndUpdate(createdCat._id, newCreatedCat);
+
+        console.log('after update function runs', db);
 
         updatedItem.name = newCat.name;
 
-        expect(updatedItem).toEqual(newCat);
+        expect(updatedItem).toEqual(newCreatedCat);
+    });
 
+    it('throws an error if invalid ID when updating', ()=> {
+        expect(() => {
+            db.findById('notAReadId');
+        }).toThrowError();
+    });
 
-    })
+    it('can delete an item by id', () => {
+        const cat  = { name: 'cat3' };
+        const createdCat = db.create(cat);
 
+        console.log('before delete function runs', db);
+
+        const deletedItem = db.findByIdAndDelete(createdCat._id);
+
+        console.log('after delete functions run', db);
+
+        expect(deletedItem).toEqual({ deleted: 1 });
+
+    });
+
+    it('throws an error if invalid ID', ()=> {
+        expect(() => {
+            db.findById('notAReadId');
+        }).toThrowError();
+    });
+
+    it('can delete everything from the DB', () => {
+        const cat  = { name: 'cat3' };
+        db.create(cat);
+
+        console.log('before delete all function runs', db);
+
+        db.drop();
+
+        console.log('after delete all function runs', db);
+
+        expect(db.store).toEqual({});
+    });
 
 });
