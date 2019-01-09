@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "shortid": "^2.2.14"
+  },
+  "devDependencies": {
     "eslint": "^5.12.0",
     "jest": "^23.6.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "jest",
-    "test": "jest --watch"
-
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
