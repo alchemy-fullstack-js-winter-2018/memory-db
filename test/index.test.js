@@ -14,6 +14,7 @@ describe('memory database', () => {
     expect(createdCat.name).toEqual('fluffy');
   });
 
+
   it('can find object by id', () => {
     const cat = { name: 'fluffy' };
     const createdCat = db.create(cat);
@@ -26,6 +27,7 @@ describe('memory database', () => {
     }).toThrow(/^No id found for: blahblah$/);
   });
 
+
   it('can find a list of all objects in store', () => {
     const cat1 = { name: 'fluffy' };
     const cat2 = { name: 'boobah' };
@@ -34,6 +36,7 @@ describe('memory database', () => {
     const all = db.find();
     expect(all).toEqual([createdCat1, createdCat2]);
   });
+
 
   it('can find an item by Id and update', () => {
     const cat = { name: 'fluffy' };
@@ -47,7 +50,8 @@ describe('memory database', () => {
     }).toThrow(/^No object found for: blahblah$/);
   });
 
-  it('finds by id and deletes it', () => {
+
+  it('can find an item by id and delete it', () => {
     const cat = { name: 'fluffy' };
     const createdCat = db.create(cat);
     const deletedCatMsg = db.findByIdAndDelete(createdCat._id);
@@ -58,6 +62,7 @@ describe('memory database', () => {
       db.findByIdAndUpdate('blahblah');
     }).toThrow(/^No object found for: blahblah$/);
   });
+
 
   it('drops the whole database', () => {
     expect(db.drop()).toEqual({});

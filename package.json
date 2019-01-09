@@ -13,7 +13,7 @@
     "url": "git+https://github.com/caripizza/memory-db.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Cari Palazzolo",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/caripizza/memory-db/issues"
@@ -21,9 +21,7 @@
   "homepage": "https://github.com/caripizza/memory-db#readme",
   "devDependencies": {
     "eslint": "^5.12.0",
-    "jest": "^23.6.0"
-  },
-  "dependencies": {
+    "jest": "^23.6.0",
     "shortid": "^2.2.14"
   }
 }
