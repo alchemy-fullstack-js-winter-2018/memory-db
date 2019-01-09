@@ -48,6 +48,12 @@ describe('memory database', () => {
     expect(updatedDog.name).toEqual('banana');
   });
 
+  it('throws an error', () => {
+    expect(() => {
+      db.findByIdAndUpdate('NotAnId');
+    }).toThrowError('no object at this id!!');
+  });
+
   it('deletes a specific id', () => {
     const dog = { name: 'fluffy' };
     const createdDog = db.create(dog);
