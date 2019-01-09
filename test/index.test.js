@@ -59,6 +59,12 @@ describe('memory database', () => {
     expect(findAndDelObj).toEqual({ deleted: 1 });  
   });
 
+  it('throws an error when trying to find an object that does not exist', () => {
+    expect(() => {
+      db.findByIdAndDelete('notARealId');
+    }).toThrowError();
+  });
+
   it('can delete everything in the db', () => {
     const obj = { name: 'foo' };
     db.create(obj);
