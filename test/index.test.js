@@ -39,10 +39,17 @@ describe('memory database', () => {
   it('can update an item in the db', () => {
     const obj1 = { name: 'foo2' };
     const obj2 = { name: 'bar2' };
-    const createdObj = db.create(obj1);
-    let updatedItem = db.findByIdAndUpdate(createdObj._id, obj2);
+    const createdObj1 = db.create(obj1);
+    const createdObj2 = db.create(obj2);
+    let updatedItem = db.findByIdAndUpdate(createdObj1._id, createdObj2);
     updatedItem.name = obj2.name;
-    expect(updatedItem).toEqual(obj2);
+    expect(updatedItem).toEqual(createdObj2);
+  });
+
+  it('throws an error when trying to find an object that does not exist', () => {
+    expect(() => {
+      db.findByIdAndUpdate('notARealId');
+    }).toThrowError();
   });
 
   it('can delete an object by id', () => {
