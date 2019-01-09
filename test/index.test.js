@@ -58,9 +58,9 @@ describe('memory database', () => {
     const dog = { name: 'fluffy' };
     const createdDog = db.create(dog);
     const foundDog = db.findById(createdDog._id);
-    const noId = db.findByIdAndDelete(foundDog._id);
+    const deletedDog = db.findByIdAndDelete(foundDog._id);
     
-    expect(noId).toEqual({ deleted: 1 });
+    expect(deletedDog).toEqual({ deleted: 1 });
   });
 
   it('throws an error', () => {
