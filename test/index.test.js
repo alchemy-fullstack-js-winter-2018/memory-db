@@ -52,7 +52,7 @@ describe('memory database', () => {
 
   it('can return a list of objects in the store', () => {
     const cat = { name: 'itchy' };
-    const dog = { name: 'bingo' };
+    const dog = { name: 'pootchie' };
     const createdCat = db.create(cat);
     const createdDog = db.create(dog);
 
@@ -64,11 +64,16 @@ describe('memory database', () => {
     const cat = { name: 'itchy' };
     const createdCat = db.create(cat);
 
-
     const findByIdAndUpdate = db.findByIdAndUpdate(createdCat._id, { name: 'scratchy' });
     expect(findByIdAndUpdate.name).toEqual('scratchy');
+  });
 
+  it('can delete the value under the id in this.store', () => {
+      const cat = { name: 'itchy' };
+      const createdCat = db.create(cat);
 
-  })
+      const foundByIdAndDelete = db.foundByIdAndDelete(createdCat._id);
+      expect(foundByIdAndDelete).toEqual({deleted:1}); 
+  });
 
-});
+  });
