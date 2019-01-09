@@ -55,6 +55,9 @@ describe('memory database', () => {
     expect(deletedCat).toEqual({ deleted: 1 });
   });
 
+  it('deletes all keys in this.store', () => {
+    expect(db.drop()).toEqual({ });
+  });
 
 
 
