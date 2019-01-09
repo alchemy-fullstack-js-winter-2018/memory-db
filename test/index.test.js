@@ -38,6 +38,15 @@ describe('memory database', () => {
     expect(cats).toEqual([createdCat]);
   });
 
+  it('copies an object then returns new copied object', () => {
+    const cat = { name: 'felix' };
+    const createdCat = db.create(cat);
+    const newCat = { name: 'snuggles' };
+    const updatedCat = db.findByIdAndUpdate(createdCat._id, newCat);
+    expect(updatedCat.name).toEqual(newCat.name);
+  });
+
+
   beforeAll(() => {
     // once before the first test runs
     // * starting our database
