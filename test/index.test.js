@@ -31,6 +31,9 @@ describe('memory database', () => {
     const allObject = db.findAll();
     expect(allObject).toEqual([createdCat, createdCat2]);
   });
+  it('if there is nothing in the database it will return an empty array', () => {
+    expect(db.findAll()).toEqual([]);
+  });
   it('this should update an old obj with a new obj', () => {
     const cat = { name: 'fluffy' }; 
     const createdCat = db.create(cat); 
