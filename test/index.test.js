@@ -56,12 +56,11 @@ describe('memory database', () => {
   });
 
   it('create a copy and update list', () => {
-    expect(() => {
-      const cat = { name: 'fluffy' };
-      const createdCat = db.create(cat);
-      const newCat = { name: 'snowball' };
-      const updatedCat = db.findById(createdCat._id);
-      expect(newCat).toEqual(updatedCat);
-    }).toThrowError('');
+    const cat = { name: 'fluffy' };
+    const createdCat = db.create(cat);
+    const newCat = { name: 'snowball' };
+    const updatedCat = db.findByIdAndUpdate(createdCat._id, newCat);
+    expect(updatedCat.name).toEqual(newCat.name);
   });
 });
+
