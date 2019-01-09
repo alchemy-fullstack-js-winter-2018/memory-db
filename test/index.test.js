@@ -50,6 +50,8 @@ describe('memory database', () => {
       const createdCat = db.create(cat);
       const newCat = { name: 'spot' };
       expect(db.findByIdAndUpdate(createdCat._id, newCat)).toEqual({ name: 'spot', _id: createdCat._id });
+      //in future for jest testing, if you use shortid to generate id, for the test when looking at the object
+      //you can use _id: expect.any(String)
     });
 
     it('can throw an error if there is no object with matching id', () => {
