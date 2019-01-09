@@ -55,12 +55,36 @@ describe('memory database', () => {
     expect(cats).toEqual([createdCat]);
   });
 
-  it('create a copy and update list', () => {
+  it('creates a copy and update list', () => {
     const cat = { name: 'fluffy' };
     const createdCat = db.create(cat);
     const newCat = { name: 'snowball' };
     const updatedCat = db.findByIdAndUpdate(createdCat._id, newCat);
     expect(updatedCat.name).toEqual(newCat.name);
   });
+  it('throws an error when trying to find an object', () => {
+    expect(() => {
+      db.findByIdAndUpdate('notARealId');
+    }).toThrowError('No object with _id notARealId');
+  });
+  //find and delete
+  //   it('find an object by id and delete', () => {
+  //     const cat = { name: 'fluffy' };
+  //     const createdCat = db.create(cat);
+  //     const foundCat = db.findById(createdCat._id);
+  //     const deletedCat = db.findByIdAndUpdate(createdCat._id);
+  //     expect(deletedCat).toEqual(createdCat);
+  //   });
+
+  //drop
+  //   const cat = [
+  //     { name: 'coco' },
+  //     { name: 'felix' },
+  //   ];
+  //   const createdCat = db.create(cat);
+  //   const cats = db.find();
+  //   expect(cats).toEqual([createdCat]);
+  // });
+
 });
 
