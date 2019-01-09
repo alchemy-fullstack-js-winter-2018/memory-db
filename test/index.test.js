@@ -4,25 +4,20 @@ describe('memory database', () => {
   let db = null;
   beforeEach(() => {
     db = new MemoryDatabase();
-    //run before each test
-    // * clear database
-    // * setup required for each test
   });
 
   describe('create', () => {
     it('creates an object in the database', () => {
-      const cat = { name: 'fluffy' };
+      const cat = { name: 'coolio' };
       const createdCat = db.create(cat);
-      expect(createdCat.name).toEqual('fluffy');
+      expect(createdCat.name).toEqual('coolio');
     });
   });
   
   describe('findById', () => {
     it('can find an object by id', () => {
-      const cat = { name: 'fluffy' };
+      const cat = { name: 'snookums' };
       const createdCat = db.create(cat);
-      // -> {name: 'fluffy', _id: 1234}
-      // createdCat._id === 1234
       const storedCat = db.findById(createdCat._id);
       expect(storedCat).toEqual(createdCat);
     });
@@ -36,30 +31,53 @@ describe('memory database', () => {
 
   describe('find', () => {
     it('can return all objects within the object', () => {
-      const cat1 = { name: 'fluffy' };
+      const cat1 = { name: 'legolas' };
       const createdCat1 = db.create(cat1);
-      const cat2 = { name: 'spot' };
+      const cat2 = { name: 'aragorn' };
       const createdCat2 = db.create(cat2);
       const data = [createdCat1, createdCat2];
       expect(db.find()).toEqual(data);
+    });
+
+    it('can return an empty array when the store is empty', () => {
+      expect(db.find()).toEqual([]);
     });
   });
 
   describe('findByIdAndUpdate', () => {
     it('can find an object by id and update it', () => {
-      const cat = { name: 'fluffy' };
+      const cat = { name: 'frodo' };
       const createdCat = db.create(cat);
       const newCat = { name: 'spot' };
       expect(db.findByIdAndUpdate(createdCat._id, newCat)).toEqual({ name: 'spot', _id: createdCat._id });
+    });
+
+    it('can throw an error if there is no object with matching id', () => {
+      expect(() => {
+        db.findById('fakeId');
+      }).toThrowError('No object with _id ${id}');
     });
   });
 
   describe('findByIdAndDelete', () => {
     it('can find an object by id and delete it', () => {
-      const cat = { name: 'fluffy' };
+      const cat = { name: 'striker' };
       const createdCat = db.create(cat);
-      const deletedCat = db.findByIdAndDelete(createdCat._id);
-      expect(deletedCat).toEqual({ deleted: 1 });
+      expect(db.findByIdAndDelete(createdCat._id)).toEqual({ deleted: 1 });
+    });
+
+    it('can throw an error if there is no object with matching id', () => {
+      expect(() => {
+        db.findById('noIdFool');
+      }).toThrowError('No object with _id ${id}');
+    });
+  });
+
+  describe('drop', () => {
+    it('can delete all keys in store', () => {
+      const cat = { name: 'baller' };
+      const createdCat = db.create(cat);
+      expect(db.drop(createdCat)).toEqual({});
     });
   });
 });
