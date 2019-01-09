@@ -73,7 +73,7 @@ describe('memory database', () => {
       const createdCat = db.create(cat);
 
       const foundByIdAndDelete = db.foundByIdAndDelete(createdCat._id);
-      expect(foundByIdAndDelete).toEqual({deleted:1}); 
+      expect(foundByIdAndDelete).toEqual(true); 
   });
 
   });
