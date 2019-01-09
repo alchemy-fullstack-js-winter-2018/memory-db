@@ -39,7 +39,23 @@ describe('memory database', () => {
         //console.log(createdCat);
         const cats = db.find();
         expect(cats).toEqual([createdCat]);
-
-
     });
+
+    it('will update and find id', () => {
+            
+        const cat = { name: 'fluffy'};
+        const createdCat = db.create(cat);
+        const newCat = { name: 'snowball'};
+        const updatedCat = db.findByIdAndUpdate(createdCat._id, newCat);
+        
+        expect(updatedCat.name).toEqual(newCat.name);
+    });
+
+    // it('will find id and delete', () => {
+    //     expect(() => {
+    //         const cat = { name: 'fluffy'};
+    //         const createdCat = db.create(cat);
+    //         const 
+    //     })
+    // })
 });
