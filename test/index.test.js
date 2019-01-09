@@ -26,7 +26,7 @@ describe('memory database', () => {
       expect(foundCat).toEqual(createdCat);
     });
 
-    it('thro ws an error when trying to find an object that does not exist', () => {
+    it('throws an error when trying to find an object that does not exist', () => {
       expect(() => {
         db.findById('notARealId');
       }).toThrowError('No object with _id notARealId');
@@ -34,7 +34,7 @@ describe('memory database', () => {
   });
 
   describe('find', () => {
-    it.only('can return an object within the object', () => {
+    it('can return an object within the object', () => {
       const cat1 = { name: 'fluffy' };
       const createdCat1 = db.create(cat1);
       const cat2 = { name: 'muffy' };
