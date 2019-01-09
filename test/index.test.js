@@ -11,14 +11,15 @@ describe('memory database', () => {
   it('creates an object in the db', () => {
     const cat = { name: 'fluffy' };
     const createdCat = db.create(cat);
+    
     expect(createdCat.name).toEqual('fluffy');
   });
 
   it('can find an object by id', () => {
     const cat = { name: 'fluffy' };
     const createdCat = db.create(cat);
-
     const foundCat = db.findById(createdCat._id); 
+
     expect(foundCat).toEqual(createdCat);
   });
 
@@ -31,10 +32,8 @@ describe('memory database', () => {
   it('returns all objects', () => {
     const cat = { name: 'fluffy' };
     const kitten = { name: 'missy' };
-
     const createdCat = db.create(cat);
     const createdKitten = db.create(kitten);
-    
     const allCats = db.find();
   
     expect(allCats).toEqual([createdCat, createdKitten]);
@@ -51,6 +50,7 @@ describe('memory database', () => {
 
   it('throws an error if no object exists for the id', () => {
     const newCat = { name: 'kitty' };
+
     expect(() => {
       db.update('123', newCat);
     }).toThrowError('No object found with that _id');
@@ -59,7 +59,6 @@ describe('memory database', () => {
   it('finds and object by id and deletes', () => {
     const cat = { name: 'fluffy' };
     const createdCat = db.create(cat);
-
     const deletedCat = db.delete(createdCat._id);
 
     expect(deletedCat).toEqual({ deleted: 1 });
@@ -77,7 +76,6 @@ describe('memory database', () => {
   it('deletes all keys in the store', () => {
     const cat = { name: 'fluffy' };
     const createdCat = db.create(cat); 
-
     const deleteAll = db.drop();
 
     expect(deleteAll).toEqual({});
