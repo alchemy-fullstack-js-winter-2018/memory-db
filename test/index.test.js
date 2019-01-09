@@ -49,8 +49,19 @@ describe('memory database', () => {
     expect(foundDog).toEqual(newDog);
   });
 
-  // it('deletes a specific id', () => {
+  it('deletes a specific id', () => {
+    const dog = { name: 'fluffy' };
+    const createdDog = db.create(dog);
+    const foundDog = db.findById(createdDog._id);
+    const noId = db.delete(foundDog._id);
+    
+    expect(noId).toEqual({ deleted: 1 });
+  });
 
-  // })
+  it('throws an error', () => {
+    expect(() => {
+      db.delete('NotAnId');
+    }).toThrowError('no object at this id');
+  });
 
 });
