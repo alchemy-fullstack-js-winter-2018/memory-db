@@ -47,6 +47,13 @@ describe('memory database', () => {
     expect(updatedCat).toEqual({ name: 'dobby', _id: createdCat._id });
   });
 
+  it('can find an id and delete value under id in this.store', () => {
+    const cat = { name: 'fluffy' };
+    const createdCat = db.create(cat);
+    const deletedCat = db.findByIdAndDelete(createdCat._id);
+
+    expect(deletedCat).toEqual({ deleted: 1 });
+  });
 
 
 
