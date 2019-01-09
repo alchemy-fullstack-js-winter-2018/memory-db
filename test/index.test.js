@@ -106,9 +106,7 @@ describe('test memory database', () => {
         db.create(cat);
 
         console.log('before delete all function runs', db);
-
         db.drop();
-
         console.log('after delete all function runs', db);
 
         expect(db.store).toEqual({});
