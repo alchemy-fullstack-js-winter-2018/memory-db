@@ -66,21 +66,28 @@ describe('memory database', () => {
 
     const findByIdAndUpdate = db.findByIdAndUpdate(createdCat._id, { name: 'scratchy' });
     expect(findByIdAndUpdate.name).toEqual('scratchy');
+    expect(findByIdAndUpdate).toEqual({ user: 'scratchy', text: 'EDITED: ', _id: expect.any(String) });
+    expect()
+  });
+  it('throws an error if ther is no id to update', () => {
+    expect(() => {
+      db.findByIdAndUpdate('badId', { name: 'fluffy' });
+    }).toThrowError();
   });
 
   it('can delete the value under the id in this.store', () => {
-      const cat = { name: 'itchy' };
-      const createdCat = db.create(cat);
+    const cat = { name: 'itchy' };
+    const createdCat = db.create(cat);
 
-      const findByIdAndDelete = db.findByIdAndDelete(createdCat._id);
-      expect(findByIdAndDelete).toEqual(true); 
+    const findByIdAndDelete = db.findByIdAndDelete(createdCat._id);
+    expect(findByIdAndDelete).toEqual(true);
   });
   it('can delete all the keys in the store', () => {
-    const cat = { name: 'itchy'};
+    const cat = { name: 'itchy' };
 
     expect(db.drop()).toEqual({});
 
 
   })
 
-  });
+});
