@@ -62,7 +62,7 @@ describe('memory database', () => {
       db.findByIdAndDelete('notARealId');
     }).toThrowError('No object exists for this id');
   });
-  
+
   it('drops', () => {
 
   });
