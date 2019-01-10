@@ -44,8 +44,8 @@ class MemoryDatabase {
   }
 
   drop() {
-    this.sort = {};
-    return this.sort;
+    this.store = {};
+    return this.store;
   }
 }
 

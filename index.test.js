@@ -23,7 +23,7 @@ describe('memory database', () => {
 
   it('throw error when id not found', () => {
     try {
-      const foundEmoji = db.findById(2);
+      const foundEmoji = db.findById('2');
       expect(foundEmoji).toThrowError();
     } catch(err) {
       expect(err).toEqual('No object with id 2 found');
@@ -46,7 +46,7 @@ describe('memory database', () => {
 
   it('update throws error', () => {
     try {
-      expect(db.update(5, { name: 'Saddy2' })).toThrowError();
+      expect(db.update('5', { name: 'Saddy2' })).toThrowError();
     } catch(err) {
       expect(err).toEqual('No object with id 5 found');
     }
@@ -60,7 +60,7 @@ describe('memory database', () => {
 
   it('delete throws error', () => {
     try {
-      expect(db.update(9)).toThrowError();
+      expect(db.update('9')).toThrowError();
     } catch(err) {
       expect(err).toEqual('No object with id 9 found');
     }
