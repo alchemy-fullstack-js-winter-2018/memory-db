@@ -1,5 +1,4 @@
 const Cat = require('./Catclass'); 
-const AnimalClass = require('./Catclass'); 
 
 describe('Cat', () => {
   it('can speak', () => {
@@ -9,7 +8,4 @@ describe('Cat', () => {
   it('will say the static age of the class', () => {
     expect(Cat.typeOfAge()).toEqual(12); 
   });
-  // describe('Throw error test', () => {
-  //   expect(AnimalClass.description()).toEqual('all cats are fluffy');
-  // });
 }); 

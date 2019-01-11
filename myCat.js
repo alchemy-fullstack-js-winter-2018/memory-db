@@ -26,14 +26,3 @@ const fluffy = createCat('fluffly');
 const whiskers = createCat('whiskers');
 fluffy.speak();
 whiskers.speak();
-
-// Class Function
-// function Cat(name) {
-//   this.name = name;
-// }
-// Cat.prototype.speak = function() {
-//   console.log( `Meow my name is ${this.name}`);
-// };
-
-// const bingo = new Cat ('bingo'); 
-// bingo.speak();
