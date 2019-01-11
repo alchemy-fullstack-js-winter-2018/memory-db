@@ -22,12 +22,7 @@ describe('memory database', () => {
   });
 
   it('throw error when id not found', () => {
-    try {
-      const foundEmoji = db.findById('2');
-      expect(foundEmoji).toThrowError();
-    } catch(err) {
-      expect(err).toEqual('No object with id 2 found');
-    }
+    expect(() => db.findById('2')).toThrowError();
   });
   
   it('can return a list of all objects', () => {
@@ -45,11 +40,7 @@ describe('memory database', () => {
   });
 
   it('update throws error', () => {
-    try {
-      expect(db.update('5', { name: 'Saddy2' })).toThrowError();
-    } catch(err) {
-      expect(err).toEqual('No object with id 5 found');
-    }
+    expect(() => db.update('5', { name: 'Saddy2' })).toThrowError();
   });
 
   it('deletes object', () => {
@@ -59,11 +50,7 @@ describe('memory database', () => {
   });
 
   it('delete throws error', () => {
-    try {
-      expect(db.update('9')).toThrowError();
-    } catch(err) {
-      expect(err).toEqual('No object with id 9 found');
-    }
+    expect(() => db.delete('9')).toThrowError();
   });
 
   it('drop deletes all keys', () => {
