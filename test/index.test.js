@@ -1,4 +1,5 @@
 const MemoryDatabase = require('../lib/index');
+
 describe('MemoryDatabase', () => {
   let db  = null;
   beforeEach(() => {
@@ -35,7 +36,6 @@ describe('MemoryDatabase', () => {
     expect(allItems).toEqual([createdCat, createdDog]);
   });
 
-  // 40+41 below could just be const createdCat = db.create({ name: 'fluffy'});
   it('can find an obj by id in the db and replace it with another', () => {
     const cat = { name: 'fluffy' };
     const createdCat = db.create(cat);
@@ -47,18 +47,23 @@ describe('MemoryDatabase', () => {
     expect(foundCat).toEqual(createdCatB);
   });
 
-// also check it throws an error if no object
-// ...
-//  expect(() => {
-//    db.findById...('badId'), {} name: 'fluffy' });
-//  }).toThrowError();
-
+  it('throws error when obj does not exist', () => {
+    expect(() => {
+      db.findByIdAndUpdate('notARealId');
+    }).toThrowError('No object with _id notARealId');
+  });
 
   it('can find an object by id and delete it', () => {
     const cat = { name: 'fluffy' };
     const createdCat = db.create(cat);
     const deletedCat = db.findByIdAndDelete(createdCat._id);
     expect(deletedCat).toEqual({ deleted: 1 });
+  });
+
+  it('throws error when obj does not exist', () => {
+    expect(() => {
+      db.findByIdAndDelete('notARealId');
+    }).toThrowError('No object with _id notARealId');
   });
 
   it('can delete all objects in a database', () => {
