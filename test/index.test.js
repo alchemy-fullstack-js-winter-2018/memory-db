@@ -66,7 +66,8 @@ describe('memory database', () => {
 
     const findByIdAndUpdate = db.findByIdAndUpdate(createdCat._id, { name: 'scratchy' });
     expect(findByIdAndUpdate.name).toEqual('scratchy');
-    expect(findByIdAndUpdate).toEqual({ user: 'scratchy', text: 'EDITED: ', _id: expect.any(String) });
+    expect(findByIdAndUpdate.name).toEqual('scratchy');
+    expect(findByIdAndUpdate).toEqual({ name: 'scratchy', _id: expect.any(String) });
     expect()
   });
   it('throws an error if ther is no id to update', () => {
@@ -84,10 +85,7 @@ describe('memory database', () => {
   });
   it('can delete all the keys in the store', () => {
     const cat = { name: 'itchy' };
-
     expect(db.drop()).toEqual({});
-
-
   })
 
 });
