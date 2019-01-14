@@ -86,6 +86,6 @@ describe('memory database', () => {
   it('can delete all the keys in the store', () => {
     const cat = { name: 'itchy' };
     expect(db.drop()).toEqual({});
-  })
+  });
 
 });
