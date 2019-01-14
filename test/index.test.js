@@ -61,7 +61,7 @@ describe('memory database', () => {
     }).toThrowError('No object with _id notARealId');
   });
   it('can delete all items in the db', () => {
-    const cat = { name: 'cat' }
+    const cat = { name: 'cat' };
     db.create(cat);
     db.dropAll();
 

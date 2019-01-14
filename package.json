@@ -6,7 +6,9 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "start": "node index.js"
+    "start": "node index.js",
+    "lint": "eslint .",
+    "pretest": "npm run lint"
   },
   "keywords": [],
   "author": "",
