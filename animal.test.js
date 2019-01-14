@@ -30,7 +30,8 @@ describe('animal creator', () => {
       try {
         expect(AnimalClass.description()).toThrowError();      
       } catch(e) {
-        console.log(e);
+        expect(e).toEqual('You are required to implement the description method');
+
       }
     });
   });
