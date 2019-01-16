@@ -43,7 +43,7 @@ describe('memory database', () => {
 
   it('throws an error when trying to find an id that does not exist', () => {
     expect(() => {
-      db.findByIdAndUpdate('notARealId', /* { name: 'fluffy' } */);
+      db.findByIdAndUpdate('notARealId');
     }).toThrowError();
   });
 
