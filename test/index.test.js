@@ -46,25 +46,24 @@ describe('memory database', () => {
 
   it('throws an error if no object exists for the id', () => {
     expect(() => {
-      db.findByIdAndUpdate('notARealId');
+      db.findById('notARealId');
     }).toThrowError('No object exists for this id');
   });
 
   it('finds by ID and deletes', () => {
     const obj = { name: 'obj1' };
-    const createdObj1 = db.create(obj);
-    const deletedObj = db.delete(obj);
-   
+    const createdObj = db.create(obj);
+    const deletedObj = db.findByIdAndDelete(createdObj._id);
     expect(deletedObj).toEqual({ deleted: 1 });
   });
 
   it('throws an error if no object exists for the id', () => {
     expect(() => {
-      db.findByIdAndDelete('notARealId');
+      db.findById('notARealId');
     }).toThrowError('No object exists for this id');
   });
 
-  // it('drops', () => {
-
-  // });
+  it('drops', () => {
+    expect(db.drop()).toEqual({});
+  });
 });
