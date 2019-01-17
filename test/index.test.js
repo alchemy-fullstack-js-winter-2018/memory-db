@@ -73,6 +73,6 @@ describe('MemoryDatabase', () => {
     db.create(dog);
 
     db.drop();
-    expect(db.find()).toEqual([]);
+    expect(db.drop()).toBeFalsy();
   });
 });
