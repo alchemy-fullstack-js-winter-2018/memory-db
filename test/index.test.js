@@ -52,9 +52,10 @@ describe('memory database', () => {
 
   it('finds by ID and deletes', () => {
     const obj = { name: 'obj1' };
-    const createdObj = db.create(obj);
-    findByIdAndDelete = findByIdAndDelete(obj1, _id, )
-    return { deleted: 1 };
+    const createdObj1 = db.create(obj);
+    const deletedObj = db.delete(obj);
+   
+    expect(deletedObj).toEqual({ deleted: 1 });
   });
 
   it('throws an error if no object exists for the id', () => {
@@ -63,28 +64,7 @@ describe('memory database', () => {
     }).toThrowError('No object exists for this id');
   });
 
-  it('drops', () => {
+  // it('drops', () => {
 
-  });
+  // });
 });
-
-// beforeEach(() => {
-//run before each test (it)
-//*clear database
-//*setup required for each test
-// });
-// beforeAll(() => {
-//   //once before the first test runs
-//   //*starting our database
-//   //*getting credentials
-// });
-// afterEach(() => {
-//   //run after each test (it)
-//   //*clean up between tests
-//   //*closing db connections
-// });
-// afterAll(() => {
-//   //run after the last test runs
-//   //*deleting files that were created during testing
-//   //*shutdown db
-// });
