@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:watch": "jest --watch"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint .",
+    "pretest": "npm run lint"
   },
   "repository": {
     "type": "git",

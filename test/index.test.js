@@ -44,47 +44,26 @@ describe('memory database', () => {
     expect(updatedItem).toEqual(createdObj2);
   });
 
-  it('throws an error if no object exists for the id', () => {
+  it.skip('throws an error if no object exists for the id', () => {
     expect(() => {
-      db.findByIdAndUpdate('notARealId');
+      db.findById('notARealId');
     }).toThrowError('No object exists for this id');
   });
 
   it('finds by ID and deletes', () => {
     const obj = { name: 'obj1' };
     const createdObj = db.create(obj);
-    findByIdAndDelete = findByIdAndDelete(obj1, _id, )
-    return { deleted: 1 };
+    const deletedObj = db.findByIdAndDelete(createdObj._id);
+    expect(deletedObj).toEqual({ deleted: 1 });
   });
 
-  it('throws an error if no object exists for the id', () => {
+  it.skip('throws an error if no object exists for the id', () => {
     expect(() => {
-      db.findByIdAndDelete('notARealId');
+      db.findById('notARealId');
     }).toThrowError('No object exists for this id');
   });
-  
-  it('drops', () => {
 
+  it('drops', () => {
+    expect(db.drop()).toEqual({});
   });
 });
-
-// beforeEach(() => {
-//run before each test (it)
-//*clear database
-//*setup required for each test
-// });
-// beforeAll(() => {
-//   //once before the first test runs
-//   //*starting our database
-//   //*getting credentials
-// });
-// afterEach(() => {
-//   //run after each test (it)
-//   //*clean up between tests
-//   //*closing db connections
-// });
-// afterAll(() => {
-//   //run after the last test runs
-//   //*deleting files that were created during testing
-//   //*shutdown db
-// });
