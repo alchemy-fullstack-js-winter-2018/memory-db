@@ -28,21 +28,23 @@ describe('memory database', () => {
   it('can find all objects', () => {
     const obj1 = { name: 'foo' };
     const obj2 = { name: 'bar' };
-    const createObj1 = db.create(obj1);
-    const createObj2 = db.create(obj2);
+    const createdObj1 = db.create(obj1);
+    const createdObj2 = db.create(obj2);
     const foundObjs = db.find();
-    expect(foundObjs[0].name).toEqual('foo');
-    expect(foundObjs[1].name).toEqual('bar');
-    expect(foundObjs.length).toEqual(2);
+    expect(foundObjs).toEqual([createdObj1, createdObj2]);
   });
 
-  it('can update an item in the db', () => {
-    const obj1 = { name: 'foo2' };
-    const obj2 = { name: 'bar2' };
-    const createdObj = db.create(obj1);
-    let updatedItem = db.findByIdAndUpdate(createdObj._id, obj2);
-    updatedItem.name = obj2.name;
-    expect(updatedItem).toEqual(obj2);
+  it('can update a stored item by id', () => {
+    const createdTweet = db.create({ user: 'Ryan', text: 'My first tweet' });
+    const _id = createdTweet._id;
+    const updatedTweet = db.findByIdAndUpdate(_id, { user: 'Ryan', text: 'EDITED: My first tweet' });
+    expect(updatedTweet).toEqual({ user: 'Ryan', text: 'EDITED: My first tweet', _id: expect.any(String) });
+  });
+
+  it('throws an error when trying to find an id that does not exist', () => {
+    expect(() => {
+      db.findByIdAndUpdate('notARealId');
+    }).toThrowError();
   });
 
   it('can delete an object by id', () => {
@@ -50,6 +52,12 @@ describe('memory database', () => {
     const createdObj = db.create(obj1);
     const findAndDelObj = db.findByIdAndDelete(createdObj._id);
     expect(findAndDelObj).toEqual({ deleted: 1 });  
+  });
+
+  it('throws an error when trying to find an object that does not exist', () => {
+    expect(() => {
+      db.findByIdAndUpdate('notARealId', { name: 'fluffy ' });
+    }).toThrowError();
   });
 
   it('can delete everything in the db', () => {
